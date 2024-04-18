@@ -1,12 +1,12 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} python:3.9-slim-buster
+FROM --platform=$TARGETPLATFORM python:3.9-slim-buster
 
-ARG TARGETARCH=amd64
+ARG TARGETARCH
+ARG TARGETPLATFORM
 
 RUN apt-get update && apt-get install  -y --no-install-recommends git ffmpeg make cmake g++
 
 ENV CC=/usr/bin/gcc
 ENV CXX=/usr/bin/g++
-
 
 
 COPY $TARGETARCH/requirements.txt requirements.txt
